@@ -5,7 +5,7 @@ pool:
   name: infranova-agent-01
 
 stages:
-  - stage: trafform-initialize
+  - stage: trafform_initialize
     displayName: init
     jobs:
       - job: terraforminit
