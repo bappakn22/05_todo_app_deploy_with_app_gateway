@@ -18,6 +18,7 @@ stages:
           inputs:
             provider: 'azurerm'
             command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/environment/prod'
             backendServiceArm: 'azure-wif-sc'
             backendAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
             backendAzureRmResourceGroupName: 'kv_rg'
