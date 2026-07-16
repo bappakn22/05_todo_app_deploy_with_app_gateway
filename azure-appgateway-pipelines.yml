@@ -1,0 +1,27 @@
+trigger:
+  - main
+
+pool:
+  name: infranova-agent-01
+
+stages:
+  - stage: trafform_initialize
+    displayName: init
+    jobs:
+      - job: terraforminit
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
+
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'init'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/environment/prod'
+            backendServiceArm: 'azure-wif-sc'
+            backendAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
+            backendAzureRmResourceGroupName: 'kv_rg'
+            backendAzureRmStorageAccountName: 'statestore01'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'tfstatefile'
