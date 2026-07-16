@@ -8,12 +8,7 @@ terraform{
         }
     }
 
-#     backend "azurerm"   {
-#         resource_group_name  = "bappa-remotestate-rg"
-#         storage_account_name  = "bappastatefiles"
-#         container_name        = "statecfiles"
-#         key                   = "prod.tfstate"
-#     }
+    backend "azurerm"   {}
 }
 
 provider "azurerm" {
