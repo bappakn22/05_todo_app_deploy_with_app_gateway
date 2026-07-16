@@ -46,3 +46,12 @@ stages:
             commandOptions: '-auto-approve'
             environmentServiceNameAzureRM: 'azure-wif-sc'
             environmentAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
+
+        - task: TerraformTask@5
+          inputs:
+            provider: 'azurerm'
+            command: 'destroy'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/environment/prod'
+            commandOptions: '-auto-approve'
+            environmentServiceNameAzureRM: 'azure-wif-sc'
+            environmentAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
