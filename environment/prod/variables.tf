@@ -50,6 +50,7 @@ variable "azurerm_public_ip" {
 
 variable "azurerm_linux_virtual_machine" {
   type = map(object({
+    vm_role                   = string
     rg_key                    = string
     subnet_key                = string
     vm_name                   = string
@@ -64,10 +65,10 @@ variable "azurerm_linux_virtual_machine" {
 
 variable "network_security_group" {
   type = map(object({
-    rg_key   = string
+    rg_key     = string
     subnet_key = string
-    nsg_name = string
-    location = string
+    nsg_name   = string
+    location   = string
     security_rule = list(object({
       security_rule_name         = string
       priority                   = number

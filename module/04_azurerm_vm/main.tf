@@ -24,13 +24,16 @@ resource "azurerm_linux_virtual_machine" "my_vm" {
     version   = "latest"
   }
 
-  custom_data = base64encode(<<-EOF
-    #!/bin/bash
-    apt-get update -y
-    apt-get install -y nginx
-    systemctl enable nginx
-    systemctl start nginx
-  EOF
-  )
+  # custom_data = base64encode(<<-EOF
+  #   #!/bin/bash
+  #   apt-get update -y
+  #   apt-get install -y nginx
+  #   systemctl enable nginx
+  #   systemctl start nginx
+  # EOF
+  # )
+
+  custom_data = each.value.vm_role == "frontend" ? base64encode(file("${path.module}/scripts/frontend.sh")) : base64encode(file("${path.module}/scripts/backend.sh"))
 
 }
+

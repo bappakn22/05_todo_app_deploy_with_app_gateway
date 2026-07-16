@@ -26,7 +26,7 @@ subnet_details = {
     address_prefixes = ["10.0.1.0/24"]
   }
 
-   "backend-subnet" = {
+  "backend-subnet" = {
     rg_key           = "rg-01"
     vnet_key         = "vnet_1"
     subnet_name      = "be-snet"
@@ -41,11 +41,11 @@ subnet_details = {
   }
 
   "appgateway" = {
-  rg_key           = "rg-01"
-  vnet_key         = "vnet_1"
-  subnet_name      = "appgateway-snet"
-  address_prefixes = ["10.0.4.0/24"]
-}
+    rg_key           = "rg-01"
+    vnet_key         = "vnet_1"
+    subnet_name      = "appgateway-snet"
+    address_prefixes = ["10.0.4.0/24"]
+  }
 }
 
 bastion_details = {
@@ -68,8 +68,9 @@ azurerm_public_ip = {
 
 azurerm_linux_virtual_machine = {
   "frontend_vm1" = {
+    vm_role                   = "frontend"
     rg_key                    = "rg-01"
-    subnet_key                =  "frontend-subnet"
+    subnet_key                = "frontend-subnet"
     vm_name                   = "empire-frontendvm1"
     location                  = "central india"
     vm_size                   = "Standard_D2s_v3"
@@ -92,6 +93,7 @@ azurerm_linux_virtual_machine = {
   # }
 
   "backend_vm1" = {
+    vm_role                   = "backend"
     rg_key                    = "rg-01"
     subnet_key                = "backend-subnet"
     vm_name                   = "empire-backendvm1"
@@ -103,7 +105,8 @@ azurerm_linux_virtual_machine = {
     nic_ip_configuration_name = "nic_ip_config_bevm1"
   }
 
-   "backend_vm2" = {
+  "backend_vm2" = {
+    vm_role                   = "backend"
     rg_key                    = "rg-01"
     subnet_key                = "backend-subnet"
     vm_name                   = "empire-backendvm2"
@@ -118,10 +121,10 @@ azurerm_linux_virtual_machine = {
 
 network_security_group = {
   "fe-nsg" = {
-    rg_key   = "rg-01"
+    rg_key     = "rg-01"
     subnet_key = "frontend-subnet"
-    nsg_name = "frontend-nsg"
-    location = "central india"
+    nsg_name   = "frontend-nsg"
+    location   = "central india"
     security_rule = [
       {
         security_rule_name         = "allowednsgsr1"
@@ -138,10 +141,10 @@ network_security_group = {
   }
 
   "be-nsg" = {
-    rg_key   = "rg-01"
+    rg_key     = "rg-01"
     subnet_key = "backend-subnet"
-    nsg_name = "backend-nsg"
-    location = "central india"
+    nsg_name   = "backend-nsg"
+    location   = "central india"
     security_rule = [
       {
         security_rule_name         = "allowednsgsr2"
