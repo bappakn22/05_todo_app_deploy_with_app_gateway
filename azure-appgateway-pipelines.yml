@@ -24,4 +24,4 @@ stages:
             backendAzureRmResourceGroupName: 'kv_rg'
             backendAzureRmStorageAccountName: 'statestore01'
             backendAzureRmContainerName: 'tfstate'
-            backendAzureRmKey: 'tfstatefile'
+            backendAzureRmKey: 'prod.tfstate'
