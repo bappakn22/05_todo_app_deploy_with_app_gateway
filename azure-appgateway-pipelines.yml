@@ -27,3 +27,22 @@ stages:
             backendAzureRmStorageAccountName: 'statestore01'
             backendAzureRmContainerName: 'tfstate'
             backendAzureRmKey: 'prod.tfstate'
+
+        - task: TerraformTask@5
+          displayName: terraform_plan
+          inputs:
+            provider: 'azurerm'
+            command: 'plan'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/environment/prod'
+            environmentServiceNameAzureRM: 'azure-wif-sc'
+            environmentAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
+
+        - task: TerraformTask@5
+          displayName: terraform_apply
+          inputs:
+            provider: 'azurerm'
+            command: 'apply'
+            workingDirectory: '$(System.DefaultWorkingDirectory)/environment/prod'
+            commandOptions: '-auto-approve'
+            environmentServiceNameAzureRM: 'azure-wif-sc'
+            environmentAzureRmOverrideSubscriptionID: '453f09cc-5afa-481e-8340-61839b6b323c'
