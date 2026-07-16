@@ -1,0 +1,15 @@
+trigger:
+  - main
+
+pool:
+  name: infranova-agent-01
+
+stages:
+  - stage: trafform-initialize
+    displayName: init
+    jobs:
+      - job: terraforminit
+        steps:
+        - task: TerraformInstaller@1
+          inputs:
+            terraformVersion: 'latest'
