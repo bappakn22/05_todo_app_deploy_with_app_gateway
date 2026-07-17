@@ -26,6 +26,8 @@ module "linux_vm" {
   azurerm_linux_virtual_machine = var.azurerm_linux_virtual_machine
   resource_group_name           = module.rg.resource_group_name
   subnet_id                     = module.vnet.subnet
+  admin_username                = data.azurerm_key_vault_secret.kv_user.value
+  admin_password                = data.azurerm_key_vault_secret.kv_pass.value
 }
 
 module "nsg_security_rules" {
@@ -46,6 +48,14 @@ module "lb" {
   lbrule_name                    = "empirehttp-rule"
   h_probe_name                   = "empirehttp-probe"
   nic_details                    = module.linux_vm.be-nic_details
+}
+
+module "mssql" {
+  source                       = "../../module/07_azurerm_sql"
+  mssql                        = var.mssql_details
+  resource_group_name          = module.rg.resource_group_name
+  administrator_login          = data.azurerm_key_vault_secret.kv_user.value
+  administrator_login_password = data.azurerm_key_vault_secret.kv_pass.value
 }
 
 

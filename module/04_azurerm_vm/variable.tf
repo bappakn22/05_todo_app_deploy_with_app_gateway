@@ -6,8 +6,6 @@ variable "azurerm_linux_virtual_machine" {
     vm_name                   = string
     location                  = string
     vm_size                   = string
-    admin_username            = string
-    admin_password            = string
     nic_name                  = string
     nic_ip_configuration_name = string
   }))
@@ -22,4 +20,12 @@ variable "subnet_id" {
   description = "The ID of the subnet"
   type        = map(string)
 
+}
+
+variable "admin_username" {
+  type = string
+}
+
+variable "admin_password" {
+  type = string
 }

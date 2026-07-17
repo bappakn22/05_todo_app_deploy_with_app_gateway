@@ -1,17 +1,17 @@
 resource "azurerm_linux_virtual_machine" "my_vm" {
-  for_each = var.azurerm_linux_virtual_machine
+  for_each            = var.azurerm_linux_virtual_machine
   name                = each.value.vm_name
   resource_group_name = var.resource_group_name[each.value.rg_key]
   location            = each.value.location
   size                = each.value.vm_size
-  admin_username      = each.value.admin_username
+  admin_username      = var.admin_username
   network_interface_ids = [
     azurerm_network_interface.my_nic[each.key].id,
   ]
-  admin_password = each.value.admin_password
+  admin_password                  = var.admin_password
   disable_password_authentication = false
 
-  
+
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -24,6 +24,8 @@ resource "azurerm_linux_virtual_machine" "my_vm" {
     version   = "latest"
   }
 
+  custom_data = each.value.vm_role == "frontend" ? base64encode(file("${path.module}/scripts/frontend.sh")) : base64encode(file("${path.module}/scripts/backend.sh"))
+
   # custom_data = base64encode(<<-EOF
   #   #!/bin/bash
   #   apt-get update -y
@@ -32,8 +34,6 @@ resource "azurerm_linux_virtual_machine" "my_vm" {
   #   systemctl start nginx
   # EOF
   # )
-
-  custom_data = each.value.vm_role == "frontend" ? base64encode(file("${path.module}/scripts/frontend.sh")) : base64encode(file("${path.module}/scripts/backend.sh"))
 
 }
 

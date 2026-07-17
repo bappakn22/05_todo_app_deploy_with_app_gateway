@@ -56,8 +56,6 @@ variable "azurerm_linux_virtual_machine" {
     vm_name                   = string
     location                  = string
     vm_size                   = string
-    admin_username            = string
-    admin_password            = string
     nic_name                  = string
     nic_ip_configuration_name = string
   }))
@@ -84,3 +82,15 @@ variable "network_security_group" {
 
 }
 
+variable "mssql_details" {
+  type = map(object({
+    rg_key                       = string
+    server_name                  = string
+    location                     = string
+    version                      = string
+    minimum_tls_version          = string
+    db_name                      = string
+
+  }))
+
+}

@@ -1,16 +1,16 @@
-# data "azurerm_key_vault" "my_kv" {
-#   name                = "tijori"
-#   resource_group_name = "bappa-remotestate-rg"
-# }
+data "azurerm_key_vault" "my_kv" {
+  name                = "secretkvo1"
+  resource_group_name = "kv_rg"
+}
 
-# data "azurerm_key_vault_secret" "kv_usec" {
-#   name         = "tijoriname"
-#   key_vault_id = data.azurerm_key_vault.my_kv.id
-# }
-# data "azurerm_key_vault_secret" "kv_psec" {
-#   name         = "tijoripassword"
-#   key_vault_id = data.azurerm_key_vault.my_kv.id
-# }
+data "azurerm_key_vault_secret" "kv_user" {
+  name         = "vmuser"
+  key_vault_id = data.azurerm_key_vault.my_kv.id
+}
+data "azurerm_key_vault_secret" "kv_pass" {
+  name         = "vmpassword"
+  key_vault_id = data.azurerm_key_vault.my_kv.id
+}
 
 # data "azurerm_public_ip" "pipdata" {
 #   depends_on = [ module.pip ]

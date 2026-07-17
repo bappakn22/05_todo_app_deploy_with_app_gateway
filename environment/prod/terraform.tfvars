@@ -74,8 +74,6 @@ azurerm_linux_virtual_machine = {
     vm_name                   = "empire-frontendvm1"
     location                  = "central india"
     vm_size                   = "Standard_D2s_v3"
-    admin_username            = "devopsadmin"
-    admin_password            = "devops@12345"
     nic_name                  = "nic_fevm1"
     nic_ip_configuration_name = "nic_ip_config_fevm1"
   }
@@ -86,8 +84,6 @@ azurerm_linux_virtual_machine = {
   #   vm_name                   = "empire-frontendvm2"
   #   location                  = "central india"
   #   vm_size                   = "Standard_D2s_v3"
-  #   admin_username            = "devopsadmin"
-  #   admin_password            = "devops@12345"
   #   nic_name                  = "nic_fevm2"
   #   nic_ip_configuration_name = "nic_ip_config_fevm2"
   # }
@@ -99,8 +95,6 @@ azurerm_linux_virtual_machine = {
     vm_name                   = "empire-backendvm1"
     location                  = "central india"
     vm_size                   = "Standard_D2s_v3"
-    admin_username            = "devopsadmin"
-    admin_password            = "devops@12345"
     nic_name                  = "nic_bevm1"
     nic_ip_configuration_name = "nic_ip_config_bevm1"
   }
@@ -112,8 +106,6 @@ azurerm_linux_virtual_machine = {
     vm_name                   = "empire-backendvm2"
     location                  = "central india"
     vm_size                   = "Standard_D2s_v3"
-    admin_username            = "devopsadmin"
-    admin_password            = "devops@12345"
     nic_name                  = "nic_bevm2"
     nic_ip_configuration_name = "nic_ip_config_bevm2"
   }
@@ -158,5 +150,16 @@ network_security_group = {
         destination_address_prefix = "*"
       }
     ]
+  }
+}
+
+mssql_details = {
+  "mssql1" = {
+    rg_key                       = "rg-01"
+    server_name                  = "app-sqlserver"
+    location                     = "central india"
+    version                      = "12.0"
+    minimum_tls_version          = "1.2"
+    db_name                      = "app-sqlserver-db"
   }
 }
