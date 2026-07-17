@@ -145,7 +145,7 @@ network_security_group = {
         access                     = "Allow"
         protocol                   = "Tcp"
         source_port_range          = "*"
-        destination_port_range     = "80"
+        destination_port_range     = "8000"
         source_address_prefix      = "*"
         destination_address_prefix = "*"
       }
@@ -156,7 +156,7 @@ network_security_group = {
 mssql_details = {
   "mssql1" = {
     rg_key                       = "rg-01"
-    server_name                  = "app-sqlserver"
+    server_name                  = "app-sqlserver03"
     location                     = "central india"
     version                      = "12.0"
     minimum_tls_version          = "1.2"
